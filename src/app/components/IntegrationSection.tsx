@@ -1,19 +1,29 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import { SiGmail, SiGooglecalendar, SiSlack, SiNotion, SiDiscord, SiGoogledrive } from 'react-icons/si';
-import { MdEmail, MdCalendarToday } from 'react-icons/md';
+import { SiGmail, SiGooglecalendar, SiSlack, SiNotion, SiDiscord, SiGoogledrive, SiHubspot, SiZapier, SiDropbox, SiGoogletasks, SiN8N, SiTodoist, SiAsana, SiTrello, SiClickup } from 'react-icons/si';
+import { MdEmail, MdCalendarToday, MdIntegrationInstructions } from 'react-icons/md';
 import { BackgroundBeams } from "./ui/BackgroundBeams";
 
 const live = [
   { name: 'Gmail',     icon: SiGmail, href: '#' },
   { name: 'GCal',      icon: SiGooglecalendar, href: '#' },
+  { name: 'Drive',     icon: SiGoogledrive, href: '#' },
+  { name: 'Outlook',   icon: MdEmail, href: '#' },
+  { name: 'O-Calendar',icon: MdCalendarToday, href: '#' },
+  { name: 'Slack',     icon: SiSlack, href: '#' },
+  { name: 'Notion',    icon: SiNotion, href: '#' },
 ];
 const coming = [
-  { name: 'Outlook',   icon: MdEmail },
-  { name: 'O-Calendar',icon: MdCalendarToday },
-  { name: 'Slack',     icon: SiSlack },
-  { name: 'Notion',    icon: SiNotion },
   { name: 'Discord',   icon: SiDiscord },
-  { name: 'Drive',     icon: SiGoogledrive },
+  { name: 'HubSpot',   icon: SiHubspot },
+  { name: 'Zapier',    icon: SiZapier },
+  { name: 'Plaid',     icon: MdIntegrationInstructions },
+  { name: 'Dropbox',   icon: SiDropbox },
+  { name: 'Google Tasks', icon: SiGoogletasks },
+  { name: 'n8n',       icon: SiN8N },
+  { name: 'Todoist',   icon: SiTodoist },
+  { name: 'Asana',     icon: SiAsana },
+  { name: 'Trello',    icon: SiTrello },
+  { name: 'ClickUp',   icon: SiClickup },
 ];
 
 function LogoGrid({ title, items }: { title: string; items: any[] }) {
@@ -25,7 +35,7 @@ function LogoGrid({ title, items }: { title: string; items: any[] }) {
       <motion.ul
         variants={{ show:{ transition:{ staggerChildren: .07 }} }}
         initial="hidden" whileInView="show" viewport={{once:true, amount:.2}}
-        className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-6 place-items-center"
+        className="flex flex-row flex-wrap justify-center gap-8"
       >
         {items.map(i => (
           <motion.li
@@ -51,7 +61,7 @@ function LogoCarousel({ title, items }:{title:string; items:any[]}) {
         {title}
       </h3>
       <div className="relative">
-        {!motionReduced && (
+        {items.length > 1 && !motionReduced ? (
           <motion.div
             className="flex gap-6"
             animate={{ x: ['0%', '-50%'] }}
@@ -65,6 +75,16 @@ function LogoCarousel({ title, items }:{title:string; items:any[]}) {
               </div>
             ))}
           </motion.div>
+        ) : (
+          <div className="flex gap-6 justify-center">
+            {items.map((i, idx) => (
+              <div key={idx}
+                className="rounded-2xl bg-white/5 backdrop-blur-sm p-4 shadow-md/20 opacity-40 hover:opacity-70 transition"
+              >
+                <i.icon size={56} aria-label={i.name} className="mx-auto" />
+              </div>
+            ))}
+          </div>
         )}
         {/* gradient mask edges */}
         <span className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black to-black via-transparent [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]" />
@@ -75,7 +95,7 @@ function LogoCarousel({ title, items }:{title:string; items:any[]}) {
 
 export default function IntegrationSection() {
   return (
-    <section id="integrations" className="relative py-24 lg:py-32 overflow-hidden">
+    <section id="integrations" className="relative py-24 lg:py-32 overflow-hidden bg-black">
       {/* Animated Beams Background */}
       <BackgroundBeams className="pointer-events-none absolute inset-0 w-full h-full z-0" />
       {/* optional abstract background */}

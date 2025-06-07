@@ -200,7 +200,7 @@ export default function HowItWorks() {
   const yChat = useTransform(scrollYProgress, [0, 1], ['0%', '-70%']);
 
   return (
-    <section id="how-it-works" ref={ref} className="relative min-h-[300vh] lg:flex bg-black overflow-hidden pt-24">
+    <section id="how-it-works" ref={ref} className="relative min-h-[120vh] lg:flex bg-black overflow-hidden pt-24 pb-8">
       {/* Decorative Background - covers the whole section */}
       <BackgroundBeams className="pointer-events-none absolute inset-0 w-full h-full z-0" />
       {/* Content (z-10) */}
