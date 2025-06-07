@@ -69,7 +69,7 @@ function LogoCarousel({ title, items }:{title:string; items:any[]}) {
           >
             {[...items, ...items].map((i, idx) => (
               <div key={idx}
-                className="rounded-2xl bg-white/5 backdrop-blur-sm p-4 shadow-md/20 opacity-40 hover:opacity-70 transition"
+                className="rounded-2xl bg-white/5 backdrop-blur-sm p-4 shadow-md/20 opacity-85 hover:opacity-70 transition"
               >
                 <i.icon size={56} aria-label={i.name} className="mx-auto" />
               </div>
@@ -79,7 +79,7 @@ function LogoCarousel({ title, items }:{title:string; items:any[]}) {
           <div className="flex gap-6 justify-center">
             {items.map((i, idx) => (
               <div key={idx}
-                className="rounded-2xl bg-white/5 backdrop-blur-sm p-4 shadow-md/20 opacity-40 hover:opacity-70 transition"
+                className="rounded-2xl bg-white/5 backdrop-blur-sm p-4 shadow-md/20 opacity-85 hover:opacity-70 transition"
               >
                 <i.icon size={56} aria-label={i.name} className="mx-auto" />
               </div>

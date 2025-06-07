@@ -7,6 +7,9 @@ import { MacbookScroll } from "./components/MacbookScroll";
 import HowItWorks from "./components/HowItWorks";
 import WhatIsJasper from "./sections/WhatIsJasper";
 import IntegrationSection from "./components/IntegrationSection";
+import BetaSection from "./components/BetaSection";
+import FinalSection from "./components/FinalSection";
+import Footer from "./components/Footer";
 
 export default function Home() {
   const [settings, setSettings] = useState({
@@ -53,6 +56,9 @@ export default function Home() {
       <HowItWorks />
 
       <IntegrationSection />
+      <BetaSection />
+      <FinalSection />
+      <Footer />
     </main>
   );
 }

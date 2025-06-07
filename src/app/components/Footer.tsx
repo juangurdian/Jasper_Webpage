@@ -3,87 +3,33 @@
 import React from "react";
 import Link from "next/link";
 import { siteConfig } from "@/lib/siteConfig";
+import { FaGithub, FaTwitter, FaDiscord } from 'react-icons/fa';
 
-export function Footer() {
+export default function Footer() {
   return (
-    <footer className="bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
-              Project
-            </h3>
-            <ul className="mt-4 space-y-4">
-              <li>
-                <Link
-                  href={siteConfig.links.github}
-                  className="text-base text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-                >
-                  GitHub
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={siteConfig.links.discord}
-                  className="text-base text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-                >
-                  Discord
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
-              Resources
-            </h3>
-            <ul className="mt-4 space-y-4">
-              <li>
-                <Link
-                  href="#features"
-                  className="text-base text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-                >
-                  Features
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#roadmap"
-                  className="text-base text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-                >
-                  Roadmap
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
-              Legal
-            </h3>
-            <ul className="mt-4 space-y-4">
-              <li>
-                <Link
-                  href="/privacy"
-                  className="text-base text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/terms"
-                  className="text-base text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-                >
-                  Terms of Service
-                </Link>
-              </li>
-            </ul>
-          </div>
+    <footer className="relative z-20 w-full border-t border-white/10 bg-black/80 py-8 mt-12">
+      <div className="mx-auto max-w-6xl px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2 text-white font-bold text-lg">
+          <span className="inline-block w-7 h-7 bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-pink-500 rounded-lg" />
+          Jasper
+        </Link>
+        {/* Nav */}
+        <nav className="flex gap-6 text-sm text-gray-400">
+          <Link href="#features" className="hover:text-indigo-400 transition">Features</Link>
+          <Link href="#roadmap" className="hover:text-indigo-400 transition">Roadmap</Link>
+          <Link href="#integrations" className="hover:text-indigo-400 transition">Integrations</Link>
+          <Link href="#beta" className="hover:text-indigo-400 transition">Beta</Link>
+        </nav>
+        {/* Socials */}
+        <div className="flex gap-4 text-gray-400 text-xl">
+          <a href="https://github.com/yourusername/jarvis-dashboard" target="_blank" rel="noopener" className="hover:text-indigo-400 transition"><FaGithub /></a>
+          <a href="https://twitter.com/yourusername" target="_blank" rel="noopener" className="hover:text-indigo-400 transition"><FaTwitter /></a>
+          <a href="https://discord.gg/your-invite" target="_blank" rel="noopener" className="hover:text-indigo-400 transition"><FaDiscord /></a>
         </div>
-        <div className="mt-8 border-t border-gray-200 dark:border-gray-700 pt-8">
-          <p className="text-base text-gray-400 text-center">
-            © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
-          </p>
-        </div>
+      </div>
+      <div className="mt-6 text-center text-xs text-gray-500">
+        © {new Date().getFullYear()} Jasper Dashboard. MIT License.
       </div>
     </footer>
   );

@@ -99,10 +99,13 @@ export const FloatingNav = ({
 
 const navItems = [
   { name: "Features", link: "#features" },
-  { name: "Roadmap", link: "#roadmap" },
-  { name: "Contact", link: "#contact" },
+  { name: "What is Jasper?", link: "#what-is-jasper" },
+  { name: "How It Works", link: "#how-it-works" },
+  { name: "Integrations", link: "#integrations" },
+  { name: "Beta", link: "#beta" },
+  { name: "FAQ", link: "#final" },
 ];
 
-export default function Navigation() {
-  return <FloatingNav navItems={navItems} />;
+export default function Navigation({ className }: { className?: string }) {
+  return <FloatingNav navItems={navItems} className={className} />;
 } 
