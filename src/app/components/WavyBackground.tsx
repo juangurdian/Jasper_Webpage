@@ -1,16 +1,125 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, Dispatch, SetStateAction } from "react";
 import { createNoise3D } from "simplex-noise";
 import { cn } from "@/lib/utils";
+
+// --- Playground Component ---
+export function WavyBackgroundPlayground({
+  settings,
+  setSettings,
+}: {
+  settings: {
+    colors: string[];
+    waveWidth: number;
+    blur: number;
+    speed: 'slow' | 'fast';
+    waveOpacity: number;
+    backgroundFill: string;
+    numWaves: number;
+  };
+  setSettings: Dispatch<SetStateAction<{
+    colors: string[];
+    waveWidth: number;
+    blur: number;
+    speed: 'slow' | 'fast';
+    waveOpacity: number;
+    backgroundFill: string;
+    numWaves: number;
+  }>>;
+}) {
+  return (
+    <div className="fixed top-0 left-0 z-[9999] bg-white/80 p-4 rounded-b-xl shadow-xl w-full max-w-xl mx-auto">
+      <div className="flex flex-wrap gap-2 items-center">
+        <label>
+          <span className="text-xs">Colors (comma):</span>
+          <input
+            type="text"
+            value={settings.colors.join(",")}
+            onChange={e => setSettings(s => ({ ...s, colors: e.target.value.split(",") }))}
+            className="border px-2 py-1 rounded w-48"
+          />
+        </label>
+        <label>
+          <span className="text-xs">Wave Width:</span>
+          <input
+            type="number"
+            value={settings.waveWidth}
+            min={1}
+            max={200}
+            onChange={e => setSettings(s => ({ ...s, waveWidth: Number(e.target.value) }))}
+            className="border px-2 py-1 rounded w-16"
+          />
+        </label>
+        <label>
+          <span className="text-xs">Blur:</span>
+          <input
+            type="number"
+            value={settings.blur}
+            min={0}
+            max={100}
+            onChange={e => setSettings(s => ({ ...s, blur: Number(e.target.value) }))}
+            className="border px-2 py-1 rounded w-16"
+          />
+        </label>
+        <label>
+          <span className="text-xs">Speed:</span>
+          <select
+            value={settings.speed}
+            onChange={e => setSettings(s => ({ ...s, speed: e.target.value as 'slow' | 'fast' }))}
+            className="border px-2 py-1 rounded"
+          >
+            <option value="slow">slow</option>
+            <option value="fast">fast</option>
+          </select>
+        </label>
+        <label>
+          <span className="text-xs">Opacity:</span>
+          <input
+            type="number"
+            value={settings.waveOpacity}
+            min={0}
+            max={1}
+            step={0.05}
+            onChange={e => setSettings(s => ({ ...s, waveOpacity: Number(e.target.value) }))}
+            className="border px-2 py-1 rounded w-16"
+          />
+        </label>
+        <label>
+          <span className="text-xs">BG Fill:</span>
+          <input
+            type="color"
+            value={settings.backgroundFill}
+            onChange={e => setSettings(s => ({ ...s, backgroundFill: e.target.value }))}
+            className="border px-2 py-1 rounded w-10"
+          />
+        </label>
+        <label>
+          <span className="text-xs"># Waves:</span>
+          <input
+            type="number"
+            value={settings.numWaves}
+            min={1}
+            max={10}
+            onChange={e => setSettings(s => ({ ...s, numWaves: Number(e.target.value) }))}
+            className="border px-2 py-1 rounded w-12"
+          />
+        </label>
+      </div>
+    </div>
+  );
+}
+
+// --- Main WavyBackground Effect ---
 
 export const WavyBackground = ({
   className,
   colors,
   waveWidth,
   backgroundFill,
-  blur = 10,
-  speed = "fast",
-  waveOpacity = 0.5,
+  blur = 15,
+  speed = "slow",
+  waveOpacity = 1,
+  numWaves = 5,
   ...props
 }: {
   className?: string;
@@ -18,8 +127,9 @@ export const WavyBackground = ({
   waveWidth?: number;
   backgroundFill?: string;
   blur?: number;
-  speed?: "slow" | "fast";
+  speed?: 'slow' | 'fast';
   waveOpacity?: number;
+  numWaves?: number;
   [key: string]: any;
 }) => {
   const noise = createNoise3D();
@@ -65,14 +175,14 @@ export const WavyBackground = ({
     ctx.fillStyle = backgroundFill || "black";
     ctx.globalAlpha = waveOpacity || 0.5;
     ctx.fillRect(0, 0, w, h);
-    drawWave(5);
+    drawWave(numWaves);
     animationId = requestAnimationFrame(render);
   };
 
   useEffect(() => {
     init();
     return () => cancelAnimationFrame(animationId);
-  }, []);
+  }, [colors, waveWidth, blur, speed, waveOpacity, backgroundFill, numWaves]);
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {

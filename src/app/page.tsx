@@ -1,19 +1,33 @@
+"use client";
+
+import { useState } from "react";
 import { WavyBackground } from "./components/WavyBackground";
-import { MacbookScroll } from "./components/MacbookScroll";
 import Navigation from "./components/Navigation";
+import { MacbookScroll } from "./components/MacbookScroll";
+import HowItWorks from "./components/HowItWorks";
 
 export default function Home() {
+  const [settings, setSettings] = useState({
+    colors: ["#38bdf8", "#818cf8", "#c084fc", "#e879f9", "#22d3ee"],
+    waveWidth: 200,
+    blur: 15,
+    speed: "fast" as 'slow' | 'fast',
+    waveOpacity: 0.8,
+    backgroundFill: "#000000",
+    numWaves: 10,
+  });
+
   return (
     <>
+      <WavyBackground {...settings} />
       <Navigation />
-      <WavyBackground />
       <section className="relative flex flex-col items-center justify-center min-h-screen w-full z-10">
         <div className="relative z-10">
           <h1 className="text-5xl font-bold text-white text-center mb-4 drop-shadow-lg">
-            Jarvis Dashboard
+          Your life, orchestrated by Jasper AI
           </h1>
           <p className="text-xl text-white/80 text-center max-w-xl mx-auto mb-8 drop-shadow">
-            Your Personal AI Assistant Dashboard – Modern, open-source, and built for productivity.
+          Talk or type—Jasper turns every request into a finished task, calendar event, email, or expense entry in seconds.  
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -35,9 +49,14 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="relative z-10">
-        <MacbookScroll title="A Next Section with Macbook Scroll" showGradient />
+      <section className="relative z-10 -mt-80">
+        <MacbookScroll
+          src="/jarvispic.png"
+          title="Meet your new personal assistant"
+          showGradient
+        />
       </section>
+      <HowItWorks />
     </>
   );
 }
