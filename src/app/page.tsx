@@ -5,6 +5,8 @@ import { WavyBackground } from "./components/WavyBackground";
 import Navigation from "./components/Navigation";
 import { MacbookScroll } from "./components/MacbookScroll";
 import HowItWorks from "./components/HowItWorks";
+import WhatIsJasper from "./sections/WhatIsJasper";
+import IntegrationSection from "./components/IntegrationSection";
 
 export default function Home() {
   const [settings, setSettings] = useState({
@@ -18,45 +20,39 @@ export default function Home() {
   });
 
   return (
-    <>
+    <main className="relative min-h-screen bg-black text-white">
       <WavyBackground {...settings} />
       <Navigation />
-      <section className="relative flex flex-col items-center justify-center min-h-screen w-full z-10">
-        <div className="relative z-10">
-          <h1 className="text-5xl font-bold text-white text-center mb-4 drop-shadow-lg">
-          Your life, orchestrated by Jasper AI
+      
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center px-4">
+        <div className="text-center max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            Your AI-Powered Productivity Copilot
           </h1>
-          <p className="text-xl text-white/80 text-center max-w-xl mx-auto mb-8 drop-shadow">
-          Talk or type—Jasper turns every request into a finished task, calendar event, email, or expense entry in seconds.  
+          <p className="text-xl md:text-2xl text-gray-300 mb-8">
+            Meet Jasper—your always-on assistant that handles tasks, calendar, email, and expenses through natural conversation.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="https://github.com/yourusername/jarvis-dashboard"
-              className="rounded-md bg-indigo-600 px-6 py-3 text-lg font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View on GitHub
-            </a>
-            <a
-              href="#waitlist"
-              className="rounded-md border border-white/30 px-6 py-3 text-lg font-semibold text-white hover:bg-white/10 transition"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Join the Waitlist
-            </a>
-          </div>
+          <button className="bg-white text-black px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            Start Free Trial
+          </button>
         </div>
       </section>
-      <section className="relative z-10 -mt-80">
-        <MacbookScroll
-          src="/jarvispic.png"
-          title="Meet your new personal assistant"
-          showGradient
-        />
-      </section>
+
+      {/* Macbook Scroll Section */}
+      <MacbookScroll
+        src="/jarvispic.png"
+        title="Meet your new personal assistant"
+        showGradient
+      />
+
+      {/* What is Jasper Section */}
+      <WhatIsJasper />
+
+      {/* How It Works Section */}
       <HowItWorks />
-    </>
+
+      <IntegrationSection />
+    </main>
   );
 }
