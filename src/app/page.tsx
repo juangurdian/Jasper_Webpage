@@ -10,6 +10,7 @@ import IntegrationSection from "./components/IntegrationSection";
 import BetaSection from "./components/BetaSection";
 import FinalSection from "./components/FinalSection";
 import Footer from "./components/Footer";
+import InsideJasper from "./components/InsideJasper";
 
 export default function Home() {
   const [settings, setSettings] = useState({
@@ -51,6 +52,7 @@ export default function Home() {
 
       {/* What is Jasper Section */}
       <WhatIsJasper />
+      <InsideJasper />
 
       {/* How It Works Section */}
       <HowItWorks />
